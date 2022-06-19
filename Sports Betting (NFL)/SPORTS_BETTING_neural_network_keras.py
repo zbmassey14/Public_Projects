@@ -12,6 +12,10 @@
   #StackExchange
   #Github
   
+  #The followwing was exucuted in a Juypter Notebook
+  #The model interpretation/explaination can be found in the summary file:
+  #SPORT_BETTING_neural_network_keras_summary
+  
  ----------------------------------------------------------------------
   
   
