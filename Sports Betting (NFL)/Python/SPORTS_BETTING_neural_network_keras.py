@@ -12,10 +12,6 @@
   #StackExchange
   #Github
   
-  #The followwing was exucuted in a Juypter Notebook
-  #The model interpretation/explaination can be found in the summary file:
-  #SPORT_BETTING_neural_network_keras_summary
-  
   
   #Summary:
   #Multilayered Neural Network
@@ -23,6 +19,11 @@
    #He Normal/Glorot Uniform initalizers.
   #AdaGrad Optimzier
   #Tuning with Bayesian Optimization & a UCB Acqusistion Function
+  
+  
+  #The followwing was exucuted in a Juypter Notebook
+  #Please see the subsequent PDF for the interpretation/Explaination
+  #SPORT_BETTING_neural_network_keras_summary.pdf
   
  ----------------------------------------------------------------------
   
