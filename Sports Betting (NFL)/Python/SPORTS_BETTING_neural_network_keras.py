@@ -16,6 +16,14 @@
   #The model interpretation/explaination can be found in the summary file:
   #SPORT_BETTING_neural_network_keras_summary
   
+  
+  #Summary:
+  #Multilayered Neural Network
+  #Swish Activation Functions were selected combined with 
+   #He Normal/Glorot Uniform initalizers.
+  #AdaGrad Optimzier
+  #Tuning with Bayesian Optimization & a UCB Acqusistion Function
+  
  ----------------------------------------------------------------------
   
   
