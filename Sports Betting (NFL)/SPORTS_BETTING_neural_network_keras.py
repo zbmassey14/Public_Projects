@@ -1,8 +1,20 @@
-#!/usr/bin/env python
-# coding: utf-8
+#Fav Won
+#Zak Massey
+#Reference:
+#Keras Neural Network
 
 ----------------------------------------------------------------------
 
+ #This project used multiple online resources
+  #References:
+  #Keras Documentation
+  #Tensorflow Documentation
+  #StackExchange
+  #Github
+  
+ ----------------------------------------------------------------------
+  
+  
 #Load libraries
 import numpy as np               
 import pandas as pd         
