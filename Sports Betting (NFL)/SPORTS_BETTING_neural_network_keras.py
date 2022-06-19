@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
+----------------------------------------------------------------------
 
 #Load libraries
 import numpy as np               
@@ -35,16 +34,11 @@ from keras import metrics
 import sklearn
 import matplotlib.pyplot as plot
 
-
-# In[19]:
-
+----------------------------------------------------------------------
 
 #Import Data
-nfl_data = pd.read_csv("c:/users/zakma/Documents/MS Econ Analytics/MS-Economic-Analytics/SportsBetting/NFL/Masters/FINALDATASETS/Final Data Sets/modelready/june7_verified.csv")
+nfl_data = pd.read_csv("filename")
 nfl_data.head()
-
-
-# In[20]:
 
 
 #Remove Variables
@@ -55,10 +49,6 @@ nfl_data.drop(["home_rookie_coach", "away_rookie_coach", "home_ovr_avg_att",
                "away_fav", "winner_turnover", "fav_won6", "idx", "dog", "winner", "loser", "margin_of_victory"],
               axis=1, inplace=True)
 
-
-# In[21]:
-
-
 #View the Data
 #Set display to see all columns with 4 decimal places
 pd.set_option("display.max.columns", None)
@@ -66,15 +56,9 @@ pd.set_option("display.precision", 4)
 nfl_data.head()
 
 
-# In[22]:
-
-
 #Shuffle the dataset
 nfl_data = nfl_data.sample(frac=1)
 nfl_data.head()
-
-
-# In[23]:
 
 
 #Split the Dataset into test and train
@@ -85,9 +69,7 @@ import random
 random.seed(2112)
 train, test = train_test_split(nfl_data, test_size=0.10)
 
-
-# In[24]:
-
+----------------------------------------------------------------------
 
 #Define the target and predictors
 labels = np.array(train['fav_won'])
@@ -97,9 +79,7 @@ features = train.drop('fav_won', axis = 1)
 feature_list = list(features.columns)
 features = np.array(features)
 
-
-# In[25]:
-
+----------------------------------------------------------------------
 
 #Variable Reduction
 
@@ -113,9 +93,9 @@ random.seed(2112)
 #Train the model
 rf.fit(features, labels);
 
+----------------------------------------------------------------------
 
-# In[26]:
-
+#Variable selection & importance
 
 #Gini/Mean Decrease of Impurity Importance
 
@@ -151,9 +131,6 @@ varimp_rf_gini_features = list(varimp_rf_gini["Variable"])
 print(varimp_rf_gini_features)
 
 
-# In[27]:
-
-
 #Permutation Based Feature Importance
 from sklearn.inspection import permutation_importance
 perm_importance = permutation_importance(rf, features, labels)
@@ -176,14 +153,9 @@ varimp_rf_perm_features = list(varimp_perm["Variable"])
 print(varimp_rf_perm_features)
 
 
-# In[28]:
-
-
 varimp_perm.sort_values("Importance", ascending=False)
 
-
-# In[12]:
-
+----------------------------------------------------------------------
 
 #Combine the lists & remove the duplicates
 selected_vars = list(varimp_rf_gini_features+varimp_rf_perm_features)
@@ -192,9 +164,6 @@ for item in selected_vars:
     if item not in selected_vars2:
         selected_vars2.append(item)
 print(selected_vars2) 
-
-
-# In[14]:
 
 
 #Reduce the dataset
@@ -210,9 +179,7 @@ test2 = pd.DataFrame(test, columns = selected_vars2)
 test2["fav_won"] = test["fav_won"]
 test2
 
-
-# In[15]:
-
+----------------------------------------------------------------------
 
 #Define inputs/target
 x_train = train2.drop("fav_won", axis = 1).values
@@ -226,9 +193,7 @@ print(y_train.shape)
 print(x_test.shape)
 print(y_test.shape)
 
-
-# In[16]:
-
+----------------------------------------------------------------------
 
 #Standardizing the data --- look at this - only training data was scaled?
 sc_X = StandardScaler()
@@ -237,9 +202,7 @@ x_test = sc_X.fit_transform(x_test)
 x_train = pd.DataFrame(data=x_train)
 x_test = pd.DataFrame(data=x_test)
 
-
-# In[17]:
-
+----------------------------------------------------------------------
 
 #Define the model
 def build_model(hyperparams):   #Define the model
@@ -270,12 +233,7 @@ def build_model(hyperparams):   #Define the model
 
         return model
     
-    
-#Model Description;
-
-
-# In[18]:
-
+----------------------------------------------------------------------
 
 #Define the Tuner
 #Using Bayesian Optimization Tuning
@@ -288,17 +246,12 @@ tuner = keras_tuner.BayesianOptimization(
     overwrite=True)
 
 
-# In[24]:
-
-
 #Balance class weights
 from sklearn.utils.class_weight import compute_class_weight
 classWeight = compute_class_weight(class_weight = "balanced", classes= np.unique(y_train),  y= y_train)
 classWeight = dict(enumerate(classWeight))
 classWeight
 
-
-# In[26]:
 
 
 #Define final tuning options
@@ -309,10 +262,6 @@ earlystopping = tf.keras.callbacks.EarlyStopping(monitor ="val_loss",
                                         restore_best_weights = True)
 
 
-#Batch size:
-#1428 training obs
-#having a batch size of 102 will result in 14 iterations
-
 #Start the tuning
 tuner.search(x_train,
               y_train,
@@ -322,25 +271,18 @@ tuner.search(x_train,
               class_weight=classWeight,
               callbacks =[earlystopping])
 
-
-# In[33]:
-
+----------------------------------------------------------------------
 
 #Look at the tuned parameters
 best_params2 = tuner.get_best_hyperparameters()
 best_params2[0].values
 
 
-# In[31]:
-
-
 #Apply to the best model
 best_model = tuner.get_best_models()[0]
 best_model.summary()
 
-
-# In[76]:
-
+----------------------------------------------------------------------
 
 #Predict using the best_model & the Testing Data Inputs
 random.seed(2112)
@@ -351,9 +293,7 @@ y_test2 = pd.DataFrame(data = y_test, columns = ["Truth"])
 output = pd.concat([preds2, y_test2], axis = 1)
 output['Pred2'] = output.apply(lambda row: round(row.Pred), axis = 1) 
 
-
-# In[77]:
-
+----------------------------------------------------------------------
 
 #Confusion Matrix with standard probability predictions (0.5 threshold)
 confusion_matrix1 = sklearn.metrics.confusion_matrix(output.Pred2, output.Truth)
@@ -361,9 +301,7 @@ print(confusion_matrix1)
 print("Accuracy %:")
 print((70+37)/(70+37+18+34)*100)
 
-
-# In[78]:
-
+----------------------------------------------------------------------
 
 #Using Classification Thresholds
 
@@ -374,17 +312,11 @@ output["Prob2"] = 1-output.Pred
 output
 
 
-# In[79]:
-
-
 #Create the probability threshold
 #87 Obs - Only kept obs with predictions above the 0.6 threshold
 idx = (output['Prob1'] > 0.61) | (output['Prob2'] > 0.61)
 output2 = output[idx]
 output2
-
-
-# In[80]:
 
 
 #Fill out the threshold based predictions
@@ -394,23 +326,14 @@ output2['Prob_pred'] = np.where(output2['Prob1'] > 0.61,1, 0)
 output2
 
 
-# In[52]:
-
-
 #Threshold: 0.6
 confusion_matrix2 = sklearn.metrics.confusion_matrix(output2.Prob_pred, output2.Truth)
 confusion_matrix2
 
 
-# In[81]:
-
-
 #Threshold: 0.61
 confusion_matrix3 = sklearn.metrics.confusion_matrix(output2.Prob_pred, output2.Truth)
 confusion_matrix3
-
-
-# In[86]:
 
 
 #View the output
@@ -435,9 +358,7 @@ print("Percent of Bettable Instances:")
 print((76/159)*100)
 print("78.94% accuracy with a decision threshold of 0.61, able to bet on 47.79% of games")
 
-
-# In[43]:
-
+----------------------------------------------------------------------
 
 #SAVE THE MODEL TO JSON FORMAT
 # serialize model to JSON
@@ -447,9 +368,6 @@ with open("model2.json", "w") as json_file:
 # serialize weights to HDF5
 best_model.save_weights("model2.h5")
 print("Saved model to disk")
-
-
-# In[45]:
 
 
 #Save the testing and training data
@@ -463,17 +381,12 @@ y_test_saved = pd.DataFrame(y_test)
 training = pd.concat([x_train_saved, y_train_saved], axis=1, join='inner')
 testing = pd.concat([x_test_saved, y_test_saved], axis=1, join='inner')
 
-training.to_csv("C:/Users/zakma/Documents/MS Econ Analytics/MS-Economic-Analytics/SportsBetting/Python Code/training_data2.csv")
-testing.to_csv("C:/Users/zakma/Documents/MS Econ Analytics/MS-Economic-Analytics/SportsBetting/Python Code/testing_data2.csv")
+training.to_csv("filename")
+testing.to_csv("filename")
 
-
-# In[ ]:
-
+----------------------------------------------------------------------
 
 #Later... To load the model & environment back to the notebook...
-
-
-# In[2]:
 
 
 #Load the model back
@@ -481,23 +394,20 @@ testing.to_csv("C:/Users/zakma/Documents/MS Econ Analytics/MS-Economic-Analytics
 #Load the model back;
 from keras.models import model_from_json
 # load json and create model
-json_file = open("C:/Users/zakma/Documents/MS Econ Analytics/MS-Economic-Analytics/SportsBetting/Python Code/model2.json", 'r')
+json_file = open("filename", 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 best_model = model_from_json(loaded_model_json)
 # load weights into new model
-best_model.load_weights("C:/Users/zakma/Documents/MS Econ Analytics/MS-Economic-Analytics/SportsBetting/Python Code/model2.h5")
+best_model.load_weights("filename")
 print("Loaded model from disk")
-
-
-# In[11]:
 
 
 #Load the environment back
 
 #Load data
-training = pd.read_csv("C:/Users/zakma/Documents/MS Econ Analytics/MS-Economic-Analytics/SportsBetting/Python Code/training_data2.csv")
-testing = pd.read_csv("C:/Users/zakma/Documents/MS Econ Analytics/MS-Economic-Analytics/SportsBetting/Python Code/testing_data2.csv")
+training = pd.read_csv("filename")
+testing = pd.read_csv("filename")
 
 #Drop the column that populated as an index
 training.drop(training.columns[[0]], axis=1, inplace=True)
@@ -509,47 +419,21 @@ y_train = training["fav_won"].values
 x_test = testing.drop("fav_won", axis = 1).values
 y_test = testing["fav_won"].values
 
-
-# In[ ]:
-
+----------------------------------------------------------------------
 
 #Model Interpretations
 
 
-# In[ ]:
-
-
 #Permutation Based Importance
-
-
-# In[ ]:
-
-
 #Top Variables
-
-
-# In[40]:
-
 
 varimp_perm = varimp_perm.sort_values("Importance", ascending=False)
 varimp_perm = pd.DataFrame(varimp_perm)
 
-
-# In[69]:
-
-
 varimp_perm15 = varimp_perm.loc[varimp_perm["Importance"] > 0.03]
 varimp_perm15
-
-
-# In[67]:
-
 
 varimp_perm15.plot.bar(x = "Variable", y = "Importance")
 
 
-# In[ ]:
-
-
 #Model interpretation explained in the Keras Summary
-
