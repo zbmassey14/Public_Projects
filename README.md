@@ -15,10 +15,12 @@ The projects mainly consist of R & Python scripts from personal & school related
    
 2. Financial Projects:
    - Culmination of personal projects that focus around Stock Price Data
+      - LLY Stock Price Forcasting with Keras LSTMs
    
    
 3. Sports Betting (NFL):
    - Collection of personal ML projects built around Sports Betting in the NFL
+      -   Sports Betting NFL Classification (XGBoost/GLMboost/KerasNNs
    
 
 4. Other:
