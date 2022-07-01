@@ -14,8 +14,9 @@ The projects mainly consist of R & Python scripts from personal & school related
    
    
 2. Financial Projects:
-   - Culmination of personal projects that focus around Stock Price Data
+   - Culmination of personal projects that focus around Financial Market Data
       - LLY Stock Price Forcasting with Keras LSTMs
+      - Forex Triangular Arbitrage
    
    
 3. Sports Betting (NFL):
