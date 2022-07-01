@@ -1,7 +1,3 @@
-
-
-
-
 #Foreign Exchange Projecy
 
 
@@ -54,7 +50,7 @@ library(sqldf)
 library(ggpubr)
 library(data.table)
 library(writexl)
-fmpc_set_token('39c5facda41abb1e5c6336fb376f40ed')
+fmpc_set_token('Your API Key')
 #For faster computation use parallel comp backend - No need for this here.
 #parallelStartSocket(cpus = detectCores())
 library(gtools)
@@ -62,16 +58,12 @@ library(combinat)
 
 
 --------------------------------------------------------------------------------
-  
-  
-  
-  
-  
+    
   
 #Model that includes estimated transaction costs
   #Based off IBKR transaction costs
   
-commutatio <- function(investment){
+forex <- function(investment){
     
     #1. Pulls the forex exchange rates
     forex <- fmpcloudr::fmpc_price_forex()
@@ -208,7 +200,7 @@ commutatio <- function(investment){
   }
 
 
-test <- commutatio(investment = 10000)
+forex <- commutatio(investment = 10000)
 
 
 
