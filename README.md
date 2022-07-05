@@ -21,7 +21,7 @@ The projects mainly consist of R & Python scripts from personal & school related
    
 3. Sports Betting (NFL):
    - Collection of personal ML projects built around Sports Betting in the NFL
-      -   Sports Betting NFL Classification (XGBoost/GLMboost/KerasNNs
+      -   Sports Betting NFL Classification (XGBoost/GLMboost/KerasNNs/SVMs)
    
 
 4. Other:
