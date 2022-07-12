@@ -9,7 +9,6 @@ gc()
 library(dplyr)
 library(finreportr)
 library(tseries)
-library(forecast)
 library(quantmod)
 library(PerformanceAnalytics)
 library(PortfolioAnalytics)
@@ -17,15 +16,7 @@ library(ROI.plugin.glpk)
 library(ROI.plugin.quadprog)
 library(parallel)
 library(parallelMap)
-library(ggplot2)
-library(tibbletime)
-library(timetk)
 library(xts)
-library(zoo)
-library(pROC)
-library(vip)
-library(Metrics)
-library(TTR)
 library(tidyr)
 library(timeSeries)
 library(tidyverse)
@@ -36,8 +27,8 @@ library(tidyverse)
   
   
   
-  #Define Portfolio to optimize
-  tickers <- c("AAPL", "LLY", "MSFT", "AMZN", "TWTR", "UBER", "SPXL",
+#Define Portfolio to optimize
+tickers <- c("AAPL", "LLY", "MSFT", "AMZN", "TWTR", "UBER", "SPXL",
                "TQQQ", "T", "XOM")
 
 #Pull the past portfolio prices from Yahoo Finance
@@ -60,8 +51,8 @@ colSums(is.na(portolioPrices))
   
   
   
-  #Create the returns object
-  stockReturns <- na.omit(Return.calculate(portolioPrices))
+#Create the returns object
+stockReturns <- na.omit(Return.calculate(portolioPrices))
 stockReturns #Returns for each asset in portfolio
 portfolioReturns <- Return.portfolio((stockReturns))
 portfolioReturns #Returns for the portfolio as a whole
@@ -90,20 +81,20 @@ table.AnnualizedReturns(R = benchmarkReturns2, Rf = 0.1/250)
   
   
   
-  #View Financial Ratios for the portfolios returns vs the benchmark
-  fin_ratios <- function(portfolioRets, benchmarkRets){
-    CAPMBETA <- CAPM.beta(portfolioRets, benchmarkRets, .021/252)
-    CAPMALPHA <- CAPM.jensenAlpha(portfolioRets, benchmarkRets, .021/252)
-    SHAPRE <- SharpeRatio(portfolioRets, 0.021/252)
-    INFORATIO <- InformationRatio(portfolioRets, benchmarkRets)
-    CALMAR <- CalmarRatio(portfolioRets, scale = 252)
-    results = list("*CAPM BETA*", CAPMBETA, 
-                   "*CAPM ALPHA*", CAPMALPHA, 
-                   "*SHARPE*", SHAPRE, 
-                   "*INFO RATIO*", INFORATIO, 
-                   "*CALMAR RATIO*", CALMAR)
-    return(results)
-  }
+#View Financial Ratios for the portfolios returns vs the benchmark
+fin_ratios <- function(portfolioRets, benchmarkRets){
+  CAPMBETA <- CAPM.beta(portfolioRets, benchmarkRets, .021/252)
+  CAPMALPHA <- CAPM.jensenAlpha(portfolioRets, benchmarkRets, .021/252)
+  SHAPRE <- SharpeRatio(portfolioRets, 0.021/252)
+  INFORATIO <- InformationRatio(portfolioRets, benchmarkRets)
+  CALMAR <- CalmarRatio(portfolioRets, scale = 252)
+  results = list("*CAPM BETA*", CAPMBETA, 
+                 "*CAPM ALPHA*", CAPMALPHA, 
+                 "*SHARPE*", SHAPRE, 
+                 "*INFO RATIO*", INFORATIO, 
+                 "*CALMAR RATIO*", CALMAR)
+  return(results)
+}
 
 fin_ratios(portfolioRets = portfolioReturns, benchmarkRets = benchmarkReturns)
 
@@ -111,9 +102,9 @@ fin_ratios(portfolioRets = portfolioReturns, benchmarkRets = benchmarkReturns)
 --------------------------------------------------------------------------------
   
   
-  #Portfolio optimization
-  #Set optimization constraints (invesment mins/maxs, costs, etc)
-  port <- NULL
+#Portfolio optimization
+#Set optimization constraints (invesment mins/maxs, costs, etc)
+port <- NULL
 port <- portfolio.spec(assets = colnames((stockReturns)))
 port <- add.constraint(portfolio = port,
                        type = "full_investment")
@@ -157,8 +148,8 @@ opt_rebal
 --------------------------------------------------------------------------------
   
   
-  #View the optimal reweighting strategy
-  chart.Weights(opt_rebal, main = "Rebalances Weights Over Time",
+#View the optimal reweighting strategy
+chart.Weights(opt_rebal, main = "Rebalances Weights Over Time",
                 cex.legend = 0.45)
 #Extract the optimal weights & apply to the portfolio for backtesting
 rebal_weights <- extractWeights(opt_rebal)
@@ -169,8 +160,8 @@ table.AnnualizedReturns(R = reabl_returns, Rf = 0.1/250)
 --------------------------------------------------------------------------------
   
   
-  #Visualizing the performance
-  rets.df <- cbind(reabl_returns, benchmarkReturns, benchmarkReturns2)
+#Visualizing the performance
+rets.df <- cbind(reabl_returns, benchmarkReturns, benchmarkReturns2)
 charts.PerformanceSummary(rets.df, main = "P/L Overtime")
 
 
