@@ -9,24 +9,18 @@ The projects mainly consist of R & Python scripts from personal & school related
    - Each of those folders contain a code file & summary file for each project.
 
 # Table of Contents:
-
-1. NFL Play by Play ML Project:
-   - Graduate School Capstone Project
-   - Run/Pass play prediction for NFL games
    
+1. Sports Betting:
+   - Collection of personal ML projects built around Sports Betting in the NFL
+      -   Sports Betting NFL Classification (XGBoost/GLMboost/KerasNNs/SVMs)
    
 2. Financial Projects:
    - Culmination of personal projects that focus around Financial Market Data
       - LLY Stock Price Forcasting with Keras LSTMs
       - Forex Triangular Arbitrage
-   
-   
-3. Sports Betting (NFL):
-   - Collection of personal ML projects built around Sports Betting in the NFL
-      -   Sports Betting NFL Classification (XGBoost/GLMboost/KerasNNs/SVMs)
-   
+      - Portfolio Optimization
 
-4. Other:
+3. Other:
    - AdHoc projects from school/work/personal.  
 
 
