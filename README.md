@@ -5,6 +5,8 @@ This repository is a collection of previous projects for resume purposes.
 This repository is a collection of previous projects to demonstrate skills listed on the resume.
 
 The projects mainly consist of R & Python scripts from personal & school related work.
+   - Each folder contains an R & Python.
+   - Each of those folders contain a code file & summary file for each project.
 
 # Table of Contents:
 
