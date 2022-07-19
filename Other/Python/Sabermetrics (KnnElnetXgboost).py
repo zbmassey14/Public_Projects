@@ -33,6 +33,8 @@ baseball = baseball.drop_duplicates()
 baseball = baseball.dropna()
 baseball.drop(["Name"], axis = 1, inplace=True)
 baseball.drop(["TB"], axis = 1, inplace=True)
+baseball.drop(["PA"], axis = 1, inplace=True)
+baseball.drop(["AB"], axis = 1, inplace=True)
 
 #We could create a new target variable
 baseball["runs_per_game"] = baseball.R/baseball.G
@@ -92,6 +94,10 @@ validation.drop(["R"], axis = 1, inplace=True)
 #Drop all obs who played less than 20 games
 train = train[train["G"]> 20]
 
+#Drop the games variable
+train.drop(["G"], axis = 1, inplace=True)
+test.drop(["G"], axis = 1, inplace=True)
+validation.drop(["G"], axis = 1, inplace=True)
 
 ------------------------------------------------------------------
 
