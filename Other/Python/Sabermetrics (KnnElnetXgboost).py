@@ -1,3 +1,12 @@
+#Sabermetrics is the empirical analysis of baseball statistics
+#The goal of this projects is to use this approach and devlop
+#ML models which can accurately predict a players runs per game
+#We can use the model devloped for scouting purposes
+#What features impact a players runs per game?
+
+
+------------------------------------------------------------------
+
 #Import Required Starting Packages
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -13,7 +22,7 @@ from sklearn.model_selection import train_test_split
 ------------------------------------------------------------------
 
 #Import Data
-baseball = pd.read_csv("c:/users/zakma/Documents/MS Econ Analytics/MS-Economic-Analytics/SportsBetting/Baseball/baseball_completed.csv")
+baseball = pd.read_csv("your/file/here")
 baseball.drop(["Pos Summary", "Name-additional", "Rk", "szn", "Tm", "Lg"], axis=1, inplace=True)
 
 #Clean the data
