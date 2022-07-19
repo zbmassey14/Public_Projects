@@ -272,7 +272,7 @@ best_model.best_estimator_.get_params()
 #Train the model
 #Then predict on the validation data
 knn_tuned2 = KNeighborsRegressor(algorithm='auto', leaf_size = 1,
-                            metric = 'minkowski', n_neighbors = 14,
+                            metric = 'minkowski', n_neighbors = 16,
                             p = 1, weights = 'uniform')
 
 knn_tuned2.fit(x_train, y_train)
