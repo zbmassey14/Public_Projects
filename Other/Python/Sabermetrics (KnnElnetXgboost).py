@@ -109,8 +109,7 @@ fig1.set_size_inches(8, 10)
 
 #Viewing the ditributions
 train.hist()
-train.hist(["PA", "AB", "H", "BB"])
-
+train.hist(["H", "2B", "HR", "SLG"])
 
 ------------------------------------------------------------------
 
