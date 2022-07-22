@@ -22,5 +22,6 @@ The projects mainly consist of R & Python scripts from personal & school related
 
 3. Other:
    - AdHoc projects from school/work/personal.  
+      - Sabermetrics & Moneyball Project
 
 
