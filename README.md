@@ -21,8 +21,9 @@ The projects mainly consist of R & Python scripts from personal & school related
       - Portfolio Optimization
 
 3. Other:
-   - AdHoc projects from school/work/personal.  
+   - AdHoc projects/writing samples from school/personal.  
       - Sabermetrics & Moneyball Project
          - Predictive Modeling & Clustering
+      - The Role of Sports Participation in Mental Health
 
 
