@@ -12,7 +12,7 @@ The projects mainly consist of R & Python scripts from personal & school related
    
 1. Sports Forecasting:
    - Collection of personal ML projects built around Sports Forecasting
-      -   Sports Betting NFL Classification (XGBoost/GLMboost/KerasNNs/SVMs)
+      -   Sports Forecasting NFL Classification (XGBoost/GLMboost/KerasNNs/SVMs)
    
 2. Financial Projects:
    - Culmination of personal projects that focus around Financial Market Data
