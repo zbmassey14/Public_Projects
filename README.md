@@ -10,8 +10,8 @@ The projects mainly consist of R & Python scripts from personal & school related
 
 # Table of Contents:
    
-1. Sports Betting:
-   - Collection of personal ML projects built around Sports Betting in the NFL
+1. Sports Forecasting:
+   - Collection of personal ML projects built around Sports Forecasting
       -   Sports Betting NFL Classification (XGBoost/GLMboost/KerasNNs/SVMs)
    
 2. Financial Projects:
