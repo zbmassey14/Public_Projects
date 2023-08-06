@@ -25,5 +25,3 @@ The projects mainly consist of R & Python scripts from personal & school related
       - Sabermetrics & Moneyball Project
          - Predictive Modeling & Clustering
       - The Role of Sports Participation in Mental Health
-
-
