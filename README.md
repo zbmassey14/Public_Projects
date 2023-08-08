@@ -5,8 +5,9 @@ This repository is a collection of previous projects for resume purposes.
 This repository is a collection of previous projects to demonstrate skills listed on the resume.
 
 The projects mainly consist of R & Python scripts from personal & school related work.
-   - Each folder contains an R & Python folder.
-   - Each of those folders contain a code file & summary file for each project.
+   - Coding folders contain a R & Python folder.
+   - Each of those folders contain a code file & summary/write-up file for each project.
+   - The research & writing folder contains writing samples from past research.
 
 # Table of Contents:
    
@@ -20,8 +21,9 @@ The projects mainly consist of R & Python scripts from personal & school related
       - Forex Triangular Arbitrage
       - Portfolio Optimization
 
-3. Other:
+3. Other: Research & Writing
    - AdHoc projects/writing samples from school/personal.  
       - Sabermetrics & Moneyball Project
          - Predictive Modeling & Clustering
       - The Role of Sports Participation in Mental Health
+      - Free Nurse Practitioners - Arkansas Business
