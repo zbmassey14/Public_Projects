@@ -12,7 +12,7 @@ The projects mainly consist of R & Python scripts from personal & school related
 # Table of Contents:
    
 1. Sports Forecasting:
-   - Collection of personal ML projects built around Sports Forecasting
+   - Collection of personal Machine Learning projects built around Sports Forecasting
       -   Sports Forecasting NFL Classification (XGBoost/GLMboost/KerasNNs/SVMs)
    
 2. Financial Projects:
@@ -25,5 +25,5 @@ The projects mainly consist of R & Python scripts from personal & school related
    - AdHoc projects/writing samples from school/personal.  
       - Sabermetrics & Moneyball Project
          - Predictive Modeling & Clustering
-      - The Role of Sports Participation in Mental Health
-      - Free Nurse Practitioners - Arkansas Business
+      - The Role of Sports Participation in Mental Health (Research Paper)
+      - Free Nurse Practitioners - Arkansas Business (Op-ed)
